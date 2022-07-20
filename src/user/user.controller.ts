@@ -8,39 +8,32 @@ import {
   Req,
 } from '@nestjs/common';
 import { Request } from 'express';
+import { UserService } from './user.service';
 
-const userList = [
-  { name: 'Dilma', email: 'dilma@gmail.com', id: 1 },
-  { name: 'Gorete', email: 'gorete@gmail.com', id: 2 },
-  { name: 'Godofredo', email: 'godofredo@gmail.com', id: 3 },
-  { name: 'Tenorio', email: 'tenorio@gmail.com', id: 4 },
-  { name: 'Jupira', email: 'jupira@gmail.com', id: 5 },
-];
+
 
 @Controller('user')
 export class UserController {
+  constructor(private userService: UserService) { }
+
   @Get()
   getUsers() {
-    return userList;
+    return this.userService.getAll();
   }
 
   @Post()
   store(@Req() req: Request) {
-    //console.log(req.body);
-    return req.body;
+    return this.userService.insert(req.body);
   }
 
   @Patch('/:userId')
-  update(@Req() req: Request) {
-    //console.log(req.body);
-    return req.body;
+  update(@Req() req: Request, @Param() params: { userId: number }) {
+    return this.userService.updateUser(req.body, params.userId);
   }
 
   @Get('/:userId')
   getUser(@Param() params: { userId: number }) {
-    const user = userList.filter((x) => x.id == params.userId);
-    if (user.length === 0) return 'Não encontrado';
-    return user;
+    return this.userService.getUserById(params.userId);
   }
 
   @Delete('/:userId')
