@@ -38,6 +38,6 @@ export class UserController {
 
   @Delete('/:userId')
   deleteUser(@Param() params: { userId: number }) {
-    return params;
+    return this.userService.deleteUser(params.userId);
   }
 }

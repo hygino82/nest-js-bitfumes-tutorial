@@ -44,5 +44,20 @@ export class UserService {
         }
         return userList[posicao];
     }
+
+    deleteUser(id: number) {
+        const selectUser = this.getUserById(id);
+        let posicao = 0;
+        for (let i = 0; i < userList.length; i++) {
+            if (userList[i] == selectUser) {
+                posicao = i;
+                break;
+            }
+        }
+
+        userList.splice(posicao, 1);
+
+        return 'Usuário removido com sucesso';
+    }
 }
 
