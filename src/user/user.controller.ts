@@ -40,4 +40,9 @@ export class UserController {
   deleteUser(@Param() param: { userId: number }) {
     return this.userService.deleteUser(param);
   }
+
+  @Post('/virgulino')
+  insereVirgulino() {
+    return this.userService.adicionarUsuario({ name: 'virgulino', email: 'virgulino@gmail.com', id: 7 });
+  }
 }

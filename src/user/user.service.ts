@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { listenerCount } from 'process';
+import { User } from 'src/custom_types';
 
 const userList = [
     { name: 'Dilma', email: 'dilma@gmail.com', id: 1 },
@@ -8,12 +8,6 @@ const userList = [
     { name: 'Tenorio', email: 'tenorio@gmail.com', id: 4 },
     { name: 'Jupira', email: 'jupira@gmail.com', id: 5 },
 ];
-
-type User = {
-    name: string,
-    email: string,
-    id: number
-}
 
 @Injectable()
 export class UserService {
@@ -58,6 +52,11 @@ export class UserService {
         userList.splice(posicao, 1);
 
         return 'Usuário removido com sucesso';
+    }
+
+    adicionarUsuario(param: User) {
+        userList.push(param);
+        return param;
     }
 }
 
