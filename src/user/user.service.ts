@@ -21,8 +21,8 @@ export class UserService {
         return userList;
     }
 
-    getUserById(userId: number) {
-        const user = userList.find((x) => x.id == userId);
+    getUserById(param: { userId: number }) {
+        const user = userList.find((x) => x.id == param.userId);
         return user;
     }
 
@@ -31,8 +31,8 @@ export class UserService {
         return user;
     }
 
-    updateUser(user, id: number) {
-        const newUser = this.getUserById(id);
+    updateUser(user, param: { userId: number }) {
+        const newUser = this.getUserById(param);
         let posicao = 0;
         for (let i = 0; i < userList.length; i++) {
             if (userList[i] == newUser) {
@@ -45,8 +45,8 @@ export class UserService {
         return userList[posicao];
     }
 
-    deleteUser(id: number) {
-        const selectUser = this.getUserById(id);
+    deleteUser(param: { userId: number }) {
+        const selectUser = this.getUserById(param);
         let posicao = 0;
         for (let i = 0; i < userList.length; i++) {
             if (userList[i] == selectUser) {

@@ -27,17 +27,17 @@ export class UserController {
   }
 
   @Patch('/:userId')
-  update(@Req() req: Request, @Param() params: { userId: number }) {
-    return this.userService.updateUser(req.body, params.userId);
+  update(@Req() req: Request, @Param() param: { userId: number }) {
+    return this.userService.updateUser(req.body, param);
   }
 
   @Get('/:userId')
-  getUser(@Param() params: { userId: number }) {
-    return this.userService.getUserById(params.userId);
+  getUser(@Param() param: { userId: number }) {
+    return this.userService.getUserById(param);
   }
 
   @Delete('/:userId')
-  deleteUser(@Param() params: { userId: number }) {
-    return this.userService.deleteUser(params.userId);
+  deleteUser(@Param() param: { userId: number }) {
+    return this.userService.deleteUser(param);
   }
 }
